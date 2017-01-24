@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Web Sockets POC using Socket.io</title>
+
+
+</head>
+<body>
+	<form action="#">
+		<p><input id="msg" placehorder="Enter the Message" /> </p>
+		<input type="submit" value="Send" />
+	</form>
+	<div id="Message">
+		
+	</div>
+	<script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"  ></script>
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<script type="text/javascript">
+		var socket = io.connect('http://localhost:4000');
+		$(funtion () {
+			$('form').bind('submit', function (x){
+				x.preventDefault();
+				socket.emit('Get-the-response' , {
+					age: $('#msg').val();
+					 } ,   function(msg) {
+					 		$('Messages').html('<p> You have sent <b>' + msg + ' </b> </p>');
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>
